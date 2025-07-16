@@ -2,7 +2,7 @@
 This project controls one or two 28BYJ-48 stepper motors using a Raspberry Pi and the ULN2003 driver board.
 
 ## Usage Requirements:
-- Raspberry Pi (any model with GPIO)
+- Raspberry Pi 
 - WiringPi library installed
 - 28BYJ-48 stepper motor
 
@@ -16,12 +16,12 @@ This project controls one or two 28BYJ-48 stepper motors using a Raspberry Pi an
 
 ## Compilation:
 The file takes the following as inputs:
-- Motor: choose 1 or 2  
+- Motor: choose 1 or 2 
 - Number of steps: a full revolution of the motor requires 512 steps
 - Latency: in milliseconds (ms)
 - Direction: choose 0 for clockwise and 1 for counterclockwise
 
-  
+
 To compile, type the following command in terminal: **./stepper &lt;motor&gt; &lt;steps&gt; &lt;latency&gt; &lt;direction&gt;**
 
 
@@ -29,3 +29,4 @@ To compile, type the following command in terminal: **./stepper &lt;motor&gt; &l
 Example execution of motor 1 with a full revolution and 1 ms latency in the clockwise direction:
 
 ` ./test 1 512 1 0 `
+
