@@ -3,10 +3,10 @@
 #include <wiringPi.h>
 #include <unistd.h>
 
-#define MOTOR1_N1 0
-#define MOTOR1_N2 2
-#define MOTOR1_N3 3
-#define MOTOR1_N4 7
+#define MOTOR1_N1 7
+#define MOTOR1_N2 0
+#define MOTOR1_N3 2
+#define MOTOR1_N4 3
 #define MOTOR2_N1 26
 #define MOTOR2_N2 27
 #define MOTOR2_N3 27
@@ -33,20 +33,20 @@ int main(int argc, char *argv[])
 	{
 		if (direction == 0)
 		{
-			revolve_motor(steps, latency, 0, 2, 3, 7);
+			revolve_motor(steps, latency, MOTOR1_N1, MOTOR1_N2, MOTOR1_N3, MOTOR1_N4);
 		}
 		else{
-			revolve_motor(steps, latency, 7, 3, 2, 0);
+			revolve_motor(steps, latency, MOTOR1_N4, MOTOR1_N3, MOTOR1_N2, MOTOR1_N1);
 		}
 	}
 	else
 	{
 		if (direction == 0)
 		{
-			revolve_motor(steps, latency, 26, 27, 28, 29);
+			revolve_motor(steps, latency, MOTOR2_N1, MOTOR2_N2, MOTOR2_N3, MOTOR2_N4);
 		}
 		else{
-			revolve_motor(steps, latency, 29, 28, 27, 26);
+			revolve_motor(steps, latency, MOTOR2_N4, MOTOR2_N3, MOTOR2_N2, MOTOR2_N1);
 		}
 	}
 	
