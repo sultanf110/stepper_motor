@@ -13,7 +13,23 @@ This project controls one or two 28BYJ-48 stepper motors using a Raspberry Pi an
 4. gpio -v to check if it was successfully installed
 
 ## Usage:
+In order for your system to work, you will connect 4 wires (N1, N2, N3, N4) from your driver to 4 GPIOs on your Rasberry Pi.
 
+Before compiling the code, make sure that you edit the pin definitions at the top of the code file to match your connections to the GPIOs. These lines:
+```
+#define MOTOR1_N1 7
+#define MOTOR1_N2 0
+#define MOTOR1_N3 2
+#define MOTOR1_N4 3
+#define MOTOR2_N1 26
+#define MOTOR2_N2 27
+#define MOTOR2_N3 27
+#define MOTOR2_N4 28
+```
+should be updated with the correct **WiringPi pin numbers** (and not the GPIO or the Pin numbers) that correspond to your motor connections.
+
+You can refer to https://pinout.xyz or simply look it up to find the right mappings.
+ 
 ## Compilation:
 The file takes the following as inputs:
 - Motor: choose 1 or 2 
