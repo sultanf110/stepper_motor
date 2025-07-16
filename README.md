@@ -7,6 +7,8 @@ This project controls one or two 28BYJ-48 stepper motors using a Raspberry Pi an
 - 28BYJ-48 stepper motor
 
 ## WiringPi Installation steps:
+In terminal:
+
 1. Clone the WiringPi repository using the command: git clone https://github.com/WiringPi/WiringPi.git
 2. cd WiringPi
 3. ./build
@@ -28,7 +30,7 @@ Before compiling the code, make sure that you edit the pin definitions at the to
 ```
 should be updated with the correct **WiringPi pin numbers** (and not the GPIO or the Pin numbers) that correspond to your motor connections.
 
-You can refer to https://pinout.xyz or simply look it up to find the right mappings.
+You can refer to https://pinout.xyz or simply look it up to find the right mappings and conversions.
  
 ## Compilation:
 The file takes the following as inputs:
