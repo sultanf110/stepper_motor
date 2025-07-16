@@ -12,6 +12,10 @@
 #define MOTOR2_N2 27
 #define MOTOR2_N3 27
 #define MOTOR2_N4 28
+#define MOTOR3_N1 11
+#define MOTOR3_N2 10
+#define MOTOR3_N3 6
+#define MOTOR3_N4 5
 
 void revolve_motor(int steps, int latency, int, int, int, int); //revolving motor func
 
@@ -40,7 +44,7 @@ int main(int argc, char *argv[])
 			revolve_motor(steps, latency, MOTOR1_N4, MOTOR1_N3, MOTOR1_N2, MOTOR1_N1);
 		}
 	}
-	else
+	else if (choice == 2)
 	{
 		if (direction == 0)
 		{
@@ -48,6 +52,16 @@ int main(int argc, char *argv[])
 		}
 		else{
 			revolve_motor(steps, latency, MOTOR2_N4, MOTOR2_N3, MOTOR2_N2, MOTOR2_N1);
+		}
+	}
+	else if (choice == 3)
+	{
+		if (direction == 0)
+		{
+			revolve_motor(steps, latency, MOTOR3_N1, MOTOR3_N2, MOTOR3_N3, MOTOR3_N4);
+		}
+		else{
+			revolve_motor(steps, latency, MOTOR3_N4, MOTOR3_N3, MOTOR3_N2, MOTOR3_N1);
 		}
 	}
 	
