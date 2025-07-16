@@ -27,6 +27,10 @@ Before compiling the code, make sure that you edit the pin definitions at the to
 #define MOTOR2_N2 27
 #define MOTOR2_N3 27
 #define MOTOR2_N4 28
+#define MOTOR3_N1 11 //GPIO 7
+#define MOTOR3_N2 10 //GPIO 8 
+#define MOTOR3_N3 6 // GPIO 25
+#define MOTOR3_N4 5 // GPIO 24
 ```
 should be updated with the correct **WiringPi pin numbers** (and not the GPIO or the Pin numbers) that correspond to your motor connections.
 
@@ -34,7 +38,7 @@ You can refer to https://pinout.xyz or simply look it up to find the right mappi
  
 ## Compilation:
 The file takes the following as inputs:
-- Motor: choose 1 or 2 
+- Motor: choose 1, 2, or 3 
 - Number of steps: a full revolution of the motor requires 512 steps
 - Latency: in milliseconds (ms)
 - Direction: choose 0 for clockwise and 1 for counterclockwise
