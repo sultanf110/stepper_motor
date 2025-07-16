@@ -3,6 +3,15 @@
 #include <wiringPi.h>
 #include <unistd.h>
 
+#define MOTOR1_N1 0
+#define MOTOR1_N2 2
+#define MOTOR1_N3 3
+#define MOTOR1_N4 7
+#define MOTOR2_N1 26
+#define MOTOR2_N2 27
+#define MOTOR2_N3 27
+#define MOTOR2_N4 28
+
 void revolve_motor(int steps, int latency, int, int, int, int); //revolving motor func
 
 int main(int argc, char *argv[])
