@@ -44,7 +44,11 @@ The file takes the following as inputs:
 - Direction: choose 0 for clockwise and 1 for counterclockwise
 
 
-To compile, type the following command in terminal: **./stepper &lt;motor&gt; &lt;steps&gt; &lt;latency&gt; &lt;direction&gt;**
+To compile, type the following commands in terminal: 
+
+- ` gcc filename.c -o filename -l wiringPi  ` to compile using the wiringPi library
+- ./stepper &lt;motor&gt; &lt;steps&gt; &lt;latency&gt; &lt;direction&gt;
+
 
 
 ## Example:
