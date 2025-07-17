@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.o
+*.out
+*.obj
+*.dll
+*.exe
+
+# CMake & build artifacts
+build/
+dist/
+*.egg-info/
+
+# GCC-generated shared libs
+*.a
+*.la
+*.lo
+*.lai
+*.pc
+*.dylib
+*.lib
+*.pyd
+
+# Packaging
+MANIFEST
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Python virtual environments
+venv/
+.env/
+.envrc
+*.egg
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
