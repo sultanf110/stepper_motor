@@ -19,18 +19,18 @@ In order for your system to work, you will connect 4 wires (N1, N2, N3, N4) from
 
 Before compiling the code, make sure that you edit the pin definitions at the top of the code file to match your connections to the GPIOs. These lines:
 ```
-#define MOTOR1_N1 7
-#define MOTOR1_N2 0
-#define MOTOR1_N3 2
-#define MOTOR1_N4 3
+#define MOTOR1_N1 0 //GPIO 17
+#define MOTOR1_N2 7 //GPIO 4
+#define MOTOR1_N3 9 //GPOI 3
+#define MOTOR1_N4 8 //GPIO 2
 #define MOTOR2_N1 26
 #define MOTOR2_N2 27
-#define MOTOR2_N3 27
-#define MOTOR2_N4 28
-#define MOTOR3_N1 11 //GPIO 7
-#define MOTOR3_N2 10 //GPIO 8 
-#define MOTOR3_N3 6 // GPIO 25
-#define MOTOR3_N4 5 // GPIO 24
+#define MOTOR2_N3 28
+#define MOTOR2_N4 29
+#define MOTOR3_N1 22 
+#define MOTOR3_N2 23  
+#define MOTOR3_N3 24 
+#define MOTOR3_N4 25 
 ```
 should be updated with the correct **WiringPi pin numbers** (and not the GPIO or the Pin numbers) that correspond to your motor connections.
 
