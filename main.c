@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
 	steps = atoi(argv[2]);
 	latency = atoi(argv[3]);
 	direction = atoi(argv[4]);
+
+	disable_all_motors();
 	
 	if (choice == 1)
 	{
@@ -108,3 +110,21 @@ void revolve_motor(int steps, int latency, int gpio1, int gpio2, int gpio3, int 
 		digitalWrite(controlPins[i], LOW);
 	}
 }
+
+void disable_all_motors()
+{
+    int allPins[] = {
+        MOTOR1_N1, MOTOR1_N2, MOTOR1_N3, MOTOR1_N4,
+        MOTOR2_N1, MOTOR2_N2, MOTOR2_N3, MOTOR2_N4,
+        MOTOR3_N1, MOTOR3_N2, MOTOR3_N3, MOTOR3_N4
+    };
+
+    int totalPins = sizeof(allPins) / sizeof(allPins[0]);
+
+    for (int i = 0; i < totalPins; i++) {
+        pinMode(allPins[i], OUTPUT);          // Ensure it's set as output
+        digitalWrite(allPins[i], LOW);        // Turn it off
+    }
+}
+
+
