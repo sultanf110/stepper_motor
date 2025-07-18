@@ -17,6 +17,7 @@
 #define MOTOR3_N3 6
 #define MOTOR3_N4 5
 
+void disable_all_motors();
 void revolve_motor(int steps, int latency, int, int, int, int); //revolving motor func
 
 int main(int argc, char *argv[])
