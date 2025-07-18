@@ -4,18 +4,18 @@
 #include <wiringPi.h>
 #include <unistd.h>
 
-#define MOTOR1_N1 7
-#define MOTOR1_N2 0
-#define MOTOR1_N3 2
-#define MOTOR1_N4 3
-#define MOTOR2_N1 26
-#define MOTOR2_N2 27
-#define MOTOR2_N3 27
-#define MOTOR2_N4 28
-#define MOTOR3_N1 11
-#define MOTOR3_N2 10
-#define MOTOR3_N3 6
-#define MOTOR3_N4 5
+#define MOTOR1_N1 25
+#define MOTOR1_N2 24
+#define MOTOR1_N3 23
+#define MOTOR1_N4 22
+#define MOTOR2_N1 0
+#define MOTOR2_N2 7
+#define MOTOR2_N3 9
+#define MOTOR2_N4 8
+#define MOTOR3_N1 4
+#define MOTOR3_N2 1
+#define MOTOR3_N3 16
+#define MOTOR3_N4 15
 
 void disable_all_motors();
 void revolve_motor(int steps, int latency, int, int, int, int); //revolving motor func
