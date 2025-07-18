@@ -34,8 +34,6 @@ int main(int argc, char *argv[])
 	steps = atoi(argv[2]);
 	latency = atoi(argv[3]);
 	direction = atoi(argv[4]);
-
-	disable_all_motors();
 	
 	if (choice == 1)
 	{
@@ -74,6 +72,8 @@ int main(int argc, char *argv[])
 void revolve_motor(int steps, int latency, int gpio1, int gpio2, int gpio3, int gpio4)
 {
 	wiringPiSetup();
+
+	disable_all_motors();
 	
 	int controlPins[4] = {gpio1, gpio2, gpio3, gpio4};
 
