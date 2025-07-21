@@ -1,58 +1,105 @@
-## Description:
-This project controls one or two 28BYJ-48 stepper motors using a Raspberry Pi and the ULN2003 driver board.
+# motorctrl
 
-## Usage Requirements:
-- Raspberry Pi 
-- WiringPi library installed
-- 28BYJ-48 stepper motor
+A Python wrapper for controlling stepper motors using a C function (`MotorCtrl`) built on the `wiringPi` GPIO library.
 
-## WiringPi Installation steps:
-In terminal:
+This package allows you to control up to three motors on a Raspberry Pi using Python, while executing high-performance GPIO logic written in C.
 
-1. Clone the WiringPi repository using the command: git clone https://github.com/WiringPi/WiringPi.git
-2. cd WiringPi
-3. ./build
-4. gpio -v to check if it was successfully installed
+---
 
-## Usage:
-In order for your system to work, you will connect 4 wires (N1, N2, N3, N4) from your driver to 4 GPIOs on your Rasberry Pi.
+## 🚀 Features
 
-Before compiling the code, make sure that you edit the pin definitions at the top of the code file to match your connections to the GPIOs. These lines:
+- Simple Python interface: `call_motor_ctrl(motor, steps, latency, direction)`
+- Underlying C code compiled and linked to `wiringPi`
+- Supports up to 3 motors with predefined GPIO pins
+- Packaged and installable via `pip install .`
+
+---
+
+## 🔧 Installation
+
+### 1. Prerequisites
+
+- Raspberry Pi with GPIO headers
+- [`wiringPi`](http://wiringpi.com) installed and available (may require `sudo apt install wiringpi` or an alternative if it's deprecated — consider [WiringPi reimplementations](https://github.com/WiringPi/WiringPi))
+- GCC compiler (`gcc`)
+- Python 3.7+
+
+### 2. Install from source
+
+Clone this repo and run:
+
+```bash
+pip install .
 ```
-#define MOTOR1_N1 7
-#define MOTOR1_N2 0
-#define MOTOR1_N3 2
-#define MOTOR1_N4 3
-#define MOTOR2_N1 26
-#define MOTOR2_N2 27
-#define MOTOR2_N3 27
-#define MOTOR2_N4 28
-#define MOTOR3_N1 11 //GPIO 7
-#define MOTOR3_N2 10 //GPIO 8 
-#define MOTOR3_N3 6 // GPIO 25
-#define MOTOR3_N4 5 // GPIO 24
+
+This will automatically compile the C source (`motorctrl.c`) into a shared library (`libmotorctrl.so`), and install the Python wrapper.
+
+---
+
+## 🧪 Usage
+
+```python
+from motorctrl import call_motor_ctrl
+
+# call_motor_ctrl(motor_number, steps, latency_ms, direction)
+call_motor_ctrl(1, 200, 100, 0)  # Motor 1, 200 steps, 100ms latency, forward
 ```
-should be updated with the correct **WiringPi pin numbers** (and not the GPIO or the Pin numbers) that correspond to your motor connections.
 
-You can refer to https://pinout.xyz or simply look it up to find the right mappings and conversions.
- 
-## Compilation:
-The file takes the following as inputs:
-- Motor: choose 1, 2, or 3 
-- Number of steps: a full revolution of the motor requires 512 steps
-- Latency: in milliseconds (ms)
-- Direction: choose 0 for clockwise and 1 for counterclockwise
+### Arguments
 
+| Name       | Type | Description                             |
+|------------|------|-----------------------------------------|
+| `motor`    | int  | Motor number (1, 2, or 3)               |
+| `steps`    | int  | Number of motor steps                   |
+| `latency`  | int  | Delay between half-steps (milliseconds) |
+| `direction`| int  | 0 = forward, 1 = backward               |
 
-To compile, type the following commands in terminal: 
+---
 
-- ` gcc filename.c -o filename -l wiringPi  ` to compile using the wiringPi library
-- ./stepper &lt;motor&gt; &lt;steps&gt; &lt;latency&gt; &lt;direction&gt;
+## 📁 Project Structure
 
+```
+motorctrl/
+├── motorctrl/
+│   ├── __init__.py
+│   ├── wrapper.py          # Python wrapper around libmotorctrl.so
+│   ├── motorctrl.c         # C source code with MotorCtrl()
+│   └── libmotorctrl.so     # Built shared object (generated)
+├── setup.py
+├── README.md
+└── MANIFEST.in
+```
 
+---
 
-## Example:
-Example execution of motor 1 with a full revolution and 1 ms latency in the clockwise direction:
+## 🛠 Development
 
-` ./test 1 512 1 0 `
+To manually rebuild the shared library:
 
+```bash
+gcc -shared -fPIC motorctrl/motorctrl.c -o motorctrl/libmotorctrl.so -lwiringPi
+```
+
+To reinstall:
+
+```bash
+pip install --force-reinstall .
+```
+
+---
+
+## 📜 License
+
+MIT License — use freely, at your own risk. GPIOs are fun, but also sharp.
+
+---
+
+## 🙋 FAQ
+
+**Q:** What if I get `undefined symbol: digitalWrite`?  
+**A:** Make sure `libmotorctrl.so` is compiled with `-lwiringPi`.
+
+**Q:** Can I use this outside a Raspberry Pi?  
+**A:** Only if you emulate or stub out `wiringPi`. It's built specifically for RPi GPIO control.
+
+---
