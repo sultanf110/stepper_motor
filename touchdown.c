@@ -8,6 +8,8 @@
 #define MOTOR_N3 0
 #define MOTOR_N4 0
 
+#define BUTTON_OFF 0
+
 int sc_status();
 int ec_status();
 int touchdown();
@@ -25,14 +27,14 @@ int touchdown()
 {
     int n;
 
-    while (sc_status() == 0)
+    while (sc_status() == BUTTON_OFF)
     {
         revolve_motor(1, 1, MOTOR_N1, MOTOR_N2, MOTOR_N3, MOTOR_N4);
     }
 
     n = 0;
 
-    while (ec_status() == 0)
+    while (ec_status() == BUTTON_OFF)
     {
         revolve_motor(1, 1, MOTOR_N4, MOTOR_N3, MOTOR_N2, MOTOR_N1);
         n++;
