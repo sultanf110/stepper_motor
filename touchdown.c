@@ -8,16 +8,22 @@
 #define MOTOR_N3 0
 #define MOTOR_N4 0
 
+#define SC_PIN 0
+#define EC_PIN 1
+
 #define BUTTON_OFF 0
 
 int sc_status();
 int ec_status();
 int touchdown();
 void revolve_motor();
+void setup_switch_pins();
 
 int main()
 {
     int n;
+
+    setup_switch_pins;
     n = touchdown();
     printf(" %d \n", n);
     return 0;
@@ -89,6 +95,14 @@ int sc_status()
 {
     int x;
 
+    if(digitalRead(SC_PIN) == 1)
+    {
+        x = 1; //button is pressed
+    }
+    else
+    {
+        x = 0;
+    }
 
     return x;
 }
@@ -97,6 +111,25 @@ int ec_status()
 {
     int x;
 
+    if(digitalRead(SC_PIN) == 1)
+    {
+        x = 1; 
+    }
+    else
+    {
+        x = 0;
+    }
     
     return x;
+}
+
+void setup_switch_pins() 
+{
+    wiringPiSetup();  
+
+    pinMode(SC_PIN, INPUT);
+    pinMode(EC_PIN, INPUT);
+
+    pullUpDnControl(SC_PIN, PUD_UP); 
+    pullUpDnControl(EC_PIN, PUD_UP); 
 }
