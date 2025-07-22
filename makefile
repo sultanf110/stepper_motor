@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g -Wall -O0 -std=c99
-LDFLAGS = -lm
+LDFLAGS = -lm -lwiringPi
 
 SOURCES := $(wildcard *.c)
 OBJECTS := $(SOURCES:.c=.o)
