@@ -3,12 +3,12 @@
 #include <wiringPi.h>
 #include <unistd.h>
 
-#define MOTOR_N1 0
+#define MOTOR_N1 7
 #define MOTOR_N2 0
-#define MOTOR_N3 0
-#define MOTOR_N4 0
+#define MOTOR_N3 2
+#define MOTOR_N4 3
 
-#define SC_PIN 0
+#define SC_PIN 24
 #define EC_PIN 1
 
 #define BUTTON_OFF 0
@@ -23,22 +23,26 @@ int main()
 {
     int n;
 
-    setup_switch_pins;
+    setup_switch_pins();   
+
     n = touchdown();
-    printf(" %d \n", n);
+    printf("The value of n is %d \n", n);
     return 0;
 }
 
 int touchdown()
 {
     int n;
+   
+    printf("Searching zero... ");
 
-    while (sc_status() == BUTTON_OFF)
+    while (sc_status()  == BUTTON_OFF)
     {
         revolve_motor(1, 1, MOTOR_N1, MOTOR_N2, MOTOR_N3, MOTOR_N4);
     }
 
     n = 0;
+    printf("found. \n  Searching end.\n");
 
     while (ec_status() == BUTTON_OFF)
     {
@@ -111,7 +115,7 @@ int ec_status()
 {
     int x;
 
-    if(digitalRead(SC_PIN) == 1)
+    if(digitalRead(EC_PIN) == 1)
     {
         x = 1; 
     }
