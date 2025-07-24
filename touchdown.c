@@ -9,7 +9,7 @@
 #define MOTOR_N4 3
 
 #define SC_PIN 24
-#define EC_PIN 1
+#define EC_PIN 15
 
 #define BUTTON_OFF 0
 
@@ -43,6 +43,7 @@ int touchdown()
 
     n = 0;
     printf("found. \n  Searching end.\n");
+    delay(1000);
 
     while (ec_status() == BUTTON_OFF)
     {
