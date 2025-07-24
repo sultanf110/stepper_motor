@@ -1,3 +1,8 @@
+#ifndef MOTORS_H
+#define MOTORS_H
+#endif 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <wiringPi.h>

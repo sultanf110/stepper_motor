@@ -1,8 +1,13 @@
+#ifndef BUTTONS_H 
+#define BUTTONS_H
+#endif // BUTTONS_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <wiringPi.h>
 #include <unistd.h>
 #include "motors.h"
+
 
 ///Modifiy this if you change input GPIO
 #define SC_PIN 24
