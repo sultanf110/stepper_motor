@@ -9,6 +9,9 @@
 #define MOTOR_N3 0
 #define MOTOR_N4 0
 
+#define N_MAX 500
+#define N_MIN 0
+
 int get_position(int steps, int direction)
 {
     int position = 0;
@@ -28,5 +31,13 @@ int get_position(int steps, int direction)
         }
     }
 
-    return position;
+    if ((position < N_MIN) || (position > N_MAX))
+    {
+        return -1;
+    }
+
+    else
+    {
+        return position;
+    }
 }
