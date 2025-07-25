@@ -11,7 +11,7 @@
 #define SC_PIN 24
 #define EC_PIN 15
 
-#define BUTTON_OFF 0
+#define BUTTON_OFF 1
 
 int sc_status();
 int ec_status();
