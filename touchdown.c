@@ -13,18 +13,34 @@
 
 #define BUTTON_OFF 0
 
+#define INTERRUPT_PIN 0
+
 int sc_status();
 int ec_status();
 int touchdown();
 void revolve_motor();
 void setup_switch_pins();
+void setup_interruption_pins();
+void kill_program();
+
+volatile int kill_signal = 0;
 
 int main()
 {
     int n;
 
-    setup_switch_pins;
-    n = touchdown();
+    wiringPiSetup();
+    setup_switch_pins();
+    setup_interruption_pins();
+
+    
+    n = touchdown();    
+    
+    if (kill_signal)
+    {
+        printf("program was terminated \n");
+    }
+
     printf(" %d \n", n);
     return 0;
 }
@@ -33,14 +49,14 @@ int touchdown()
 {
     int n;
 
-    while (sc_status() == BUTTON_OFF)
+    while (sc_status() == BUTTON_OFF && !kill_signal)
     {
         revolve_motor(1, 1, MOTOR_N1, MOTOR_N2, MOTOR_N3, MOTOR_N4);
     }
 
     n = 0;
 
-    while (ec_status() == BUTTON_OFF)
+    while (ec_status() == BUTTON_OFF && !kill_signal)
     {
         revolve_motor(1, 1, MOTOR_N4, MOTOR_N3, MOTOR_N2, MOTOR_N1);
         n++;
@@ -124,12 +140,24 @@ int ec_status()
 }
 
 void setup_switch_pins() 
-{
-    wiringPiSetup();  
-
+{  
     pinMode(SC_PIN, INPUT);
     pinMode(EC_PIN, INPUT);
 
     pullUpDnControl(SC_PIN, PUD_UP); 
     pullUpDnControl(EC_PIN, PUD_UP); 
+}
+
+void setup_interruption_pins()
+{
+    pinMode(INTERRUPT_PIN, INPUT);
+    pullUpDnControl(INTERRUPT_PIN, PUD_UP); 
+
+    wiringPiISR(INTERRUPT_PIN, INT_EDGE_FALLING, &kill_program);
+}
+
+void kill_program()
+{
+    kill_signal = 1;
+    printf("aborting program ... \n");
 }
