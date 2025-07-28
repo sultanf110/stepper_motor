@@ -8,10 +8,10 @@
 #define MOTOR_N3 2
 #define MOTOR_N4 3
 
-#define SC_PIN 0
-#define EC_PIN 1
+#define SC_PIN 24
+#define EC_PIN 15
 
-#define BUTTON_OFF 0
+#define BUTTON_OFF 1
 
 #define INTERRUPT_PIN 11
 
