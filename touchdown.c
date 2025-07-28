@@ -3,17 +3,17 @@
 #include <wiringPi.h>
 #include <unistd.h>
 
-#define MOTOR_N1 0
+#define MOTOR_N1 7
 #define MOTOR_N2 0
-#define MOTOR_N3 0
-#define MOTOR_N4 0
+#define MOTOR_N3 2
+#define MOTOR_N4 3
 
 #define SC_PIN 0
 #define EC_PIN 1
 
 #define BUTTON_OFF 0
 
-#define INTERRUPT_PIN 0
+#define INTERRUPT_PIN 11
 
 int sc_status();
 int ec_status();
